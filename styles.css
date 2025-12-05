@@ -20,75 +20,60 @@ body {
     padding: 40px;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-header h1 {
-    color: #333;
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-header p {
-    color: #666;
-    font-size: 1.1em;
-}
-
-.input-section {
-    margin-bottom: 30px;
-}
-
-.input-wrapper {
+.controls-section {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
 }
 
-#urlInput {
+.filter-section {
     flex: 1;
-    min-width: 250px;
-    padding: 15px 20px;
-    font-size: 16px;
+}
+
+.filter-section h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: white;
     border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-#urlInput:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.generate-btn {
-    padding: 15px 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.2s ease;
+    color: #666;
 }
 
-.generate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+.filter-btn:hover {
+    border-color: #1C4973;
+    color: #1C4973;
+    background: #f8f9ff;
 }
 
-.generate-btn:active {
-    transform: translateY(0);
+.filter-btn.active {
+    background: linear-gradient(135deg, #1C4973 0%, #0B233F 100%);
+    color: white;
+    border-color: #1C4973;
 }
 
-.generate-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
+.filter-btn.active:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #653a91 100%);
 }
 
 .refresh-btn {
@@ -127,7 +112,7 @@ header p {
 
 .spinner {
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
+    border-top: 4px solid #1C4973;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -185,7 +170,7 @@ header p {
 .preview-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: #667eea;
+    border-color: #1C4973;
 }
 
 .card-header {
@@ -215,7 +200,7 @@ header p {
 }
 
 .card-domain {
-    color: #667eea;
+    color: #1C4973;
     font-size: 0.85em;
     font-weight: 600;
     display: flex;
@@ -228,8 +213,9 @@ header p {
     font-size: 1em;
 }
 
-.card-description {
-    padding: 15px 25px 20px;
+.card-description,
+.card-details {
+    padding: 20px 25px;
     color: #666;
     font-size: 0.95em;
     line-height: 1.6;
@@ -242,6 +228,98 @@ header p {
 
 .card-description-text {
     flex: 1;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    border-left: 3px solid #1C4973;
+}
+
+.detail-label {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 1em;
+    font-weight: 600;
+    color: #333;
+}
+
+.detail-item.detail-won {
+    border-left-color: #28ca42;
+}
+
+.detail-item.detail-won .detail-value {
+    color: #28ca42;
+}
+
+.detail-item.detail-lost {
+    border-left-color: #ff5f57;
+}
+
+.detail-item.detail-lost .detail-value {
+    color: #ff5f57;
+}
+
+.detail-item.detail-positive .detail-value {
+    color: #28ca42;
+}
+
+.detail-item.detail-negative .detail-value {
+    color: #ff5f57;
+}
+
+.card-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-page {
+    background: linear-gradient(135deg, #1C4973 0%, #0B233F 100%);
+    color: white;
+}
+
+.badge-status {
+    font-weight: 700;
+}
+
+.badge-won {
+    background: #28ca42;
+    color: white;
+}
+
+.badge-lost {
+    background: #ff5f57;
+    color: white;
 }
 
 .view-switcher {
@@ -267,19 +345,19 @@ header p {
 }
 
 .view-btn:hover {
-    border-color: #667eea;
-    color: #667eea;
+    border-color: #1C4973;
+    color: #1C4973;
     background: #f8f9ff;
 }
 
 .view-btn.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1C4973 0%, #0B233F 100%);
     color: white;
-    border-color: #667eea;
+    border-color: #1C4973;
 }
 
 .view-btn.active:hover {
-    background: linear-gradient(135deg, #5568d3 0%, #653a91 100%);
+    background: linear-gradient(135deg, #1C4973 0%, #0B233F 100%);
 }
 
 
@@ -403,7 +481,7 @@ header p {
 }
 
 .open-link-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1C4973 0%, #0B233F 100%);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -428,20 +506,9 @@ header p {
         margin-top: 20px;
     }
 
-    header h1 {
-        font-size: 2em;
-    }
-
-    .input-wrapper {
+    .controls-section {
         flex-direction: column;
-    }
-
-    #urlInput {
-        width: 100%;
-    }
-
-    .generate-btn {
-        width: 100%;
+        padding: 15px;
     }
 
     .refresh-btn {
@@ -468,6 +535,14 @@ header p {
     .browser-url-bar {
         font-size: 0.75em;
         padding: 4px 8px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-details {
+        padding: 15px 20px;
     }
 }
 

@@ -8,26 +8,16 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🔗 Web Page Preview</h1>
-            <p>Enter a URL to see the actual webpage content</p>
-        </header>
-
-        <div class="input-section">
-            <div class="input-wrapper">
-                <input 
-                    type="url" 
-                    id="urlInput" 
-                    placeholder="https://example.com"
-                    autocomplete="off"
-                >
-                <button id="generateBtn" class="generate-btn">
-                    <span>Generate Preview</span>
-                </button>
-                <button id="refreshSheetBtn" class="refresh-btn" title="Refresh from Google Sheet">
-                    <span>🔄 Refresh from Sheet</span>
-                </button>
+        <div class="controls-section">
+            <div class="filter-section">
+                <h2>Filter by Page</h2>
+                <div id="filterButtons" class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                </div>
             </div>
+            <button id="refreshSheetBtn" class="refresh-btn" title="Refresh from Google Sheet">
+                <span>🔄 Refresh from Sheet</span>
+            </button>
         </div>
 
         <div id="loading" class="loading hidden">
