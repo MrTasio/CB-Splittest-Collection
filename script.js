@@ -6,7 +6,7 @@ const error = document.getElementById('error');
 const cardContainer = document.getElementById('cardContainer');
 
 // Google Sheet URL
-const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1mxjbNbemtxisdtMnEhU7csgYlIqpS5nAZDYfou9DDSQ/edit?gid=0#gid=0';
+const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1mxjbNbemtxisdtMnEhU7csgYlIqpS5nAZDYfou9DDSQ/edit?usp=sharing';
 
 // Load saved cards from localStorage
 loadSavedCards();
@@ -501,7 +501,11 @@ async function loadCardsFromGoogleSheet() {
         
         const csvText = await response.text();
         
+        // Parse CSV to JSON (array of objects)
         const rows = parseCSV(csvText);
+        
+        // Log the parsed JSON for debugging
+        console.log('Parsed CSV data (JSON):', JSON.stringify(rows, null, 2));
         
         if (rows.length === 0) {
             hideLoading();
@@ -518,8 +522,8 @@ async function loadCardsFromGoogleSheet() {
             let title = '';
             
             // Common column name variations
-            const urlColumnNames = ['preview link', 'url', 'link', 'previewlink', 'preview_link'];
-            const titleColumnNames = ['title', 'name', 'funnel name', 'funnelname', 'funnel_name'];
+            const urlColumnNames = ['page', 'preview link', 'url', 'link', 'previewlink', 'preview_link'];
+            const titleColumnNames = ['test funnel', 'title', 'name', 'funnel name', 'funnelname', 'funnel_name'];
             
             for (const colName of urlColumnNames) {
                 const key = Object.keys(row).find(k => k.toLowerCase() === colName.toLowerCase());
